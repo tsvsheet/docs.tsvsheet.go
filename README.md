@@ -2,7 +2,7 @@
 
 # docs.tsvsheet.go
 
-Public documentation for [`uplang/tsvsheet.go`](https://github.com/uplang/tsvsheet.go) — the Go implementation of [tsvsheet](https://github.com/uplang/tsvsheet), *a spreadsheet for plain text*. Published as a [Hugo](https://gohugo.io) site via GitHub Pages at [uplang.github.io/docs.tsvsheet.go](https://uplang.github.io/docs.tsvsheet.go/).
+Public documentation for [`uplang/tsvsheet.go`](https://github.com/uplang/tsvsheet.go) — the Go implementation of [tsvsheet](https://github.com/uplang/tsvsheet), _a spreadsheet for plain text_. Published as a [Hugo](https://gohugo.io) site via GitHub Pages at [uplang.github.io/docs.tsvsheet.go](https://uplang.github.io/docs.tsvsheet.go/).
 
 ## Playground
 

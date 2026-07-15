@@ -2,7 +2,7 @@
 title: Home
 ---
 
-**A spreadsheet for plain text.** A `.tsvt` file *is* the spreadsheet — a single TAB-separated grid whose cells are literal values or `=formulas` that address other cells in A1 notation (`B2`, `D2:D5`), computed in place, versioned as text, diffed line by line.
+**A spreadsheet for plain text.** A `.tsvt` file _is_ the spreadsheet — a single TAB-separated grid whose cells are literal values or `=formulas` that address other cells in A1 notation (`B2`, `D2:D5`), computed in place, versioned as text, diffed line by line.
 
 ## Playground
 
@@ -18,7 +18,7 @@ The formula expression sublanguage is Excel-faithful: `^` (power), `&` (concat),
 
 The `tsvsheet` CLI renders, parses, checks, and explains sheets, serves a browser editor, or opens a bubbletea TUI — one shared engine behind all of them, with unix stdin/stdout discipline:
 
-```
+```text
 tsvsheet render sheet.tsvt          # compute and print the grid
 tsvsheet check  sheet.tsvt          # validate formulas and references
 tsvsheet explain D5 < sheet.tsvt    # trace how a cell was produced
@@ -26,4 +26,4 @@ tsvsheet serve  sheet.tsvt          # local browser editor (reads/writes the fil
 tsvsheet tui    sheet.tsvt          # terminal editor
 ```
 
-A `.tsvt` can carry a `#!` shebang and `# ` comments, so a sheet is directly executable — `render` is the default command.
+A `.tsvt` can carry a `#!` shebang and `#` comments, so a sheet is directly executable — `render` is the default command.
