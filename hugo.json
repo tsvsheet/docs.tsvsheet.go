@@ -1,6 +1,6 @@
 {
-  "baseURL": "https://example.org/",
-  "title": "Project Documentation",
+  "baseURL": "https://uplang.github.io/docs.tsvsheet.go/",
+  "title": "tsvsheet",
   "publishDir": "_site",
   "enableRobotsTXT": true,
   "markup": {
@@ -12,6 +12,6 @@
     }
   },
   "params": {
-    "description": "Public documentation for the project."
+    "description": "A spreadsheet for plain text — a .tsvt file is the spreadsheet."
   }
 }

@@ -1,34 +1,22 @@
-[![actions](https://github.com/nicerobot/template.repo-docs/actions/workflows/actions.yml/badge.svg)](https://github.com/nicerobot/template.repo-docs/actions/workflows/actions.yml) [![docs](https://github.com/nicerobot/template.repo-docs/actions/workflows/docs.yml/badge.svg)](https://github.com/nicerobot/template.repo-docs/actions/workflows/docs.yml) [![pages](https://github.com/nicerobot/template.repo-docs/actions/workflows/pages.yml/badge.svg)](https://github.com/nicerobot/template.repo-docs/actions/workflows/pages.yml)
+[![actions](https://github.com/uplang/docs.tsvsheet.go/actions/workflows/actions.yml/badge.svg)](https://github.com/uplang/docs.tsvsheet.go/actions/workflows/actions.yml) [![docs](https://github.com/uplang/docs.tsvsheet.go/actions/workflows/docs.yml/badge.svg)](https://github.com/uplang/docs.tsvsheet.go/actions/workflows/docs.yml) [![pages](https://github.com/uplang/docs.tsvsheet.go/actions/workflows/pages.yml/badge.svg)](https://github.com/uplang/docs.tsvsheet.go/actions/workflows/pages.yml)
 
-# template.repo-docs
+# docs.tsvsheet.go
 
-Canonical template for a project's **public docs** repository (`<org>/docs.<project>`). A project's developer and user documentation — contributing, design, rules — lives here as a public [Hugo](https://gohugo.io) site published via GitHub Pages. Private content (ideas, tasks, specs) lives in the project's hub repo (`project.<project>`), never here.
+Public documentation for [`uplang/tsvsheet.go`](https://github.com/uplang/tsvsheet.go) — the Go implementation of [tsvsheet](https://github.com/uplang/tsvsheet), *a spreadsheet for plain text*. Published as a [Hugo](https://gohugo.io) site via GitHub Pages at [uplang.github.io/docs.tsvsheet.go](https://uplang.github.io/docs.tsvsheet.go/).
+
+## Playground
+
+[`static/playground/`](static/playground/) hosts the browser playground: the `tsvsheet` engine compiled to WebAssembly (`main.wasm` + `wasm_exec.js`) plus a single-page editor (`index.html`). It runs entirely client-side — no server — and is served at [`/playground/`](https://uplang.github.io/docs.tsvsheet.go/playground/). Rebuild and redeploy it from the code repo with `make wasm` (staging into `dist/playground/`), then copy `dist/playground/*` here.
 
 ## Layout
 
 | Path | Purpose |
 | --- | --- |
 | [`content/`](content/) | Markdown documentation — the Hugo site content. |
-| [`layouts/`](layouts/) | Hugo templates (managed fleet style — distributed from this template). |
-| [`assets/`](assets/) | Hugo assets (managed fleet style — distributed from this template). |
+| [`static/playground/`](static/playground/) | The WebAssembly browser playground, served at `/playground/`. |
+| [`layouts/`](layouts/) | Hugo templates (managed fleet style — distributed from the docs template). |
+| [`assets/`](assets/) | Hugo assets (managed fleet style — distributed from the docs template). |
 | [`hugo.json`](hugo.json) | Hugo configuration. |
-| [`.github/workflows/pages.yml`](.github/workflows/pages.yml) | The GitHub Pages build workflow (managed fleet style). Always present; it deploys whenever Pages can serve the site and skips neutrally otherwise. |
 | [`Makefile`](Makefile) | Local preview and build. Run `make` for help. |
 
-## Public, with a self-gating workflow
-
-Everything in this repo is **public** — it exists to be published, so there is no `public/`/`private/` split. Anything private (design notes, tasks, ideas, specs) belongs in the project's private hub repo (`project.<project>`).
-
-A docs repo ships ready to publish: the Pages workflow is always present and **gates on whether Pages can actually serve the site** — a public repo always builds (Pages self-enables on the first run), a private repo builds when Pages is already enabled (paid plans serve private-repo Pages), and a private repo without Pages skips neutrally. There is no file to rename and no change needed to start deploying.
-
-## Going public
-
-1. Make the repository public.
-2. Enable Pages: **Settings → Pages → Source: GitHub Actions** (the workflow's `configure-pages` step does this itself on the first run if needed).
-3. Push (or re-run the **pages** workflow). It publishes the whole site.
-
-## Creating a new docs repo from this template
-
-```bash
-gh repo create <org>/docs.<project> --public --template nicerobot/template.repo-docs
-```
+Private material (ideas, tasks, specs) lives in the project's hub repo, never here.
