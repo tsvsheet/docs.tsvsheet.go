@@ -1,12 +1,12 @@
-[![actions](https://github.com/uplang/docs.tsvsheet.go/actions/workflows/actions.yml/badge.svg)](https://github.com/uplang/docs.tsvsheet.go/actions/workflows/actions.yml) [![docs](https://github.com/uplang/docs.tsvsheet.go/actions/workflows/docs.yml/badge.svg)](https://github.com/uplang/docs.tsvsheet.go/actions/workflows/docs.yml) [![pages](https://github.com/uplang/docs.tsvsheet.go/actions/workflows/pages.yml/badge.svg)](https://github.com/uplang/docs.tsvsheet.go/actions/workflows/pages.yml)
+[![actions](https://github.com/tsvsheet/docs.tsvsheet.go/actions/workflows/actions.yml/badge.svg)](https://github.com/tsvsheet/docs.tsvsheet.go/actions/workflows/actions.yml) [![docs](https://github.com/tsvsheet/docs.tsvsheet.go/actions/workflows/docs.yml/badge.svg)](https://github.com/tsvsheet/docs.tsvsheet.go/actions/workflows/docs.yml) [![pages](https://github.com/tsvsheet/docs.tsvsheet.go/actions/workflows/pages.yml/badge.svg)](https://github.com/tsvsheet/docs.tsvsheet.go/actions/workflows/pages.yml)
 
 # docs.tsvsheet.go
 
-Public documentation for [`uplang/tsvsheet.go`](https://github.com/uplang/tsvsheet.go) — the Go implementation of [tsvsheet](https://github.com/uplang/tsvsheet), _a spreadsheet for plain text_. Published as a [Hugo](https://gohugo.io) site via GitHub Pages at [uplang.github.io/docs.tsvsheet.go](https://uplang.github.io/docs.tsvsheet.go/).
+Public documentation for [`tsvsheet/tsvsheet.go`](https://github.com/tsvsheet/tsvsheet.go) — the Go implementation of [tsvsheet](https://github.com/tsvsheet/tsvsheet), _a spreadsheet for plain text_. Published as a [Hugo](https://gohugo.io) site via GitHub Pages at [tsvsheet.github.io/docs.tsvsheet.go](https://tsvsheet.github.io/docs.tsvsheet.go/).
 
 ## Playground
 
-[`static/playground/`](static/playground/) hosts the browser playground: the `tsvsheet` engine compiled to WebAssembly (`main.wasm` + `wasm_exec.js`) plus a single-page editor (`index.html`). It runs entirely client-side — no server — and is served at [`/playground/`](https://uplang.github.io/docs.tsvsheet.go/playground/). Rebuild and redeploy it from the code repo with `make wasm` (staging into `dist/playground/`), then copy `dist/playground/*` here.
+[`static/playground/`](static/playground/) hosts the browser playground: the `tsvsheet` engine compiled to WebAssembly (`main.wasm` + `wasm_exec.js`) plus a single-page editor (`index.html`). It runs entirely client-side — no server — and is served at [`/playground/`](https://tsvsheet.github.io/docs.tsvsheet.go/playground/). Rebuild and redeploy it from the code repo with `make wasm` (staging into `dist/playground/`), then copy `dist/playground/*` here.
 
 ## Layout
 
