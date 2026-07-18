@@ -76,7 +76,7 @@ Network	1100	=round(B4/sum($B$2:$B$4)*100, 1)
 
 ### A chart that is a sheet
 
-Cells compute text — including SVG. A sheet with `input`/`output` is a function ([SPECIFICATION.md §8](https://github.com/tsvsheet/tsvsheet/blob/main/SPECIFICATION.md)), so a bar chart can be *written in tsvsheet* and embedded from any other sheet. `bar-chart.tsvt` scales its bars with `max`, assembles `<rect>` fragments with `concat`, and `output`s one complete SVG document:
+Cells compute text — including SVG. A sheet with `input`/`output` is a function ([SPECIFICATION.md §8](https://github.com/tsvsheet/tsvsheet/blob/main/SPECIFICATION.md)), so a bar chart can be _written in tsvsheet_ and embedded from any other sheet. `bar-chart.tsvt` scales its bars with `max`, assembles `<rect>` fragments with `concat`, and `output`s one complete SVG document:
 
 ```text
 label	value	h	svg fragment
