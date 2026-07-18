@@ -39,3 +39,90 @@ tsvsheet tui    sheet.tsvt          # terminal editor
 ```
 
 A `.tsvt` can carry a `#!` shebang and `#` comments, so a sheet is directly executable — `render` is the default command.
+
+## Examples
+
+Everything below runs today, with the shipped engine and nothing else — each example was computed with `tsvsheet render` exactly as shown.
+
+### Bars in the grid
+
+`rept` scaled by `max` turns a column into a chart you can `cat`, diff, and review — the poor man's sparkline, entirely inside the language:
+
+```text
+Month	Revenue	Chart
+Jan	1200	=rept("█", round(B2/max($B$2:$B$4)*20, 0))
+Feb	1350	=rept("█", round(B3/max($B$2:$B$4)*20, 0))
+Mar	1810	=rept("█", round(B4/max($B$2:$B$4)*20, 0))
+```
+
+```text
+Month	Revenue	Chart
+Jan	1200	█████████████
+Feb	1350	███████████████
+Mar	1810	████████████████████
+```
+
+### Shares that reflow
+
+A percentage column over `sum` recomputes every share when any one number changes — the grid stays honest without a spreadsheet application in sight:
+
+```text
+Category	Monthly	Share %
+Compute	4200	=round(B2/sum($B$2:$B$4)*100, 1)
+Storage	1900	=round(B3/sum($B$2:$B$4)*100, 1)
+Network	1100	=round(B4/sum($B$2:$B$4)*100, 1)
+```
+
+### A chart that is a sheet
+
+Cells compute text — including SVG. A sheet with `input`/`output` is a function ([SPECIFICATION.md §8](https://github.com/tsvsheet/tsvsheet/blob/main/SPECIFICATION.md)), so a bar chart can be *written in tsvsheet* and embedded from any other sheet. `bar-chart.tsvt` scales its bars with `max`, assembles `<rect>` fragments with `concat`, and `output`s one complete SVG document:
+
+```text
+label	value	h	svg fragment
+=input(1)	=input(2)	=round(B2/max($B$2:$B$5)*100, 0)	=concat("<rect x='20' y='", 120-C2, "' width='60' height='", C2, "' fill='#4C78A8'/>")
+…	…	…	…
+=output(concat("<svg xmlns='http://www.w3.org/2000/svg' width='325' height='145'>", D2, D3, D4, D5, "</svg>"))
+```
+
+Any report embeds it as an ordinary formula, and extracting the computed cell yields a rendered chart:
+
+```text
+Quarter	Revenue
+Q1	120
+Q2	180
+Chart	=sheet("bar-chart.tsvt", A2, B2, A3, B3, …)
+```
+
+```text
+tsvsheet render report.tsvt | awk -F'\t' '$1=="Chart"{print $2}' > chart.svg
+```
+
+The chart is a sheet: parameterized, versioned, diffable, forkable. A chart library is a directory of `.tsvt` files.
+
+### Emitting other text languages
+
+The same trick targets any text-based tool. An edge-list sheet whose third column assembles [Graphviz](https://graphviz.org/) statements becomes a rendered dependency diagram in one pipeline:
+
+```text
+service	depends-on	dot
+api	db	=concat("  ", A2, " -> ", B2, ";")
+api	cache	=concat("  ", A3, " -> ", B3, ";")
+web	api	=concat("  ", A4, " -> ", B4, ";")
+```
+
+```text
+{ echo 'digraph deps {'; tsvsheet render edges.tsvt | cut -f3 | tail -n +2; echo '}'; } | dot -Tsvg -o deps.svg
+```
+
+(String literals have no escape sequences — for a literal `"` inside emitted text, use `char(34)`.)
+
+### Plotting computed output
+
+The computed grid is plain TSV — the native input of the standard plotting toolchain. Feed it to [gnuplot](http://gnuplot.info/) from a pipeline, or to [d3](https://d3js.org/) directly — `d3.tsv()` parses `render` output as-is:
+
+```text
+tsvsheet render sales.tsvt > sales.tsv         # then: plot 'sales.tsv' with linespoints
+const rows = await d3.tsv("sales.tsv", d3.autoType);
+```
+
+Formulas stay in the source, computation stays in the engine, and every downstream tool sees exactly what a spreadsheet export would have given it — minus the spreadsheet.
