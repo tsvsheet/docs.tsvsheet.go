@@ -19,6 +19,7 @@ The formula expression sublanguage is Excel-faithful: `^` (power), `&` (concat),
 Formulas compose like a shell pipeline. `expr | fn(arg, …)` feeds the expression in as the function's **first argument**, so a multi-stage transformation reads left to right in execution order instead of inside-out:
 
 ```text
+=A2:A10 | sort() | unique() | count()     ≡  =count(unique(sort(A2:A10)))
 =avg(B2:B7) | round(1) | concat(" avg")   ≡  =concat(round(avg(B2:B7), 1), " avg")
 =A1 | round(2)                            ≡  =round(A1, 2)
 =A1 & B1 | len()                          ≡  =len(A1 & B1)    (pipe binds loosest)
