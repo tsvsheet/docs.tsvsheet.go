@@ -32,18 +32,18 @@ The pipe is **pure sugar over function calls** — the two spellings are the sam
 The `tsvsheet` CLI renders, parses, checks, and explains sheets, serves a browser editor, or opens a bubbletea TUI — one shared engine behind all of them, with unix stdin/stdout discipline:
 
 ```text
-tsvsheet render sheet.tsvt          # compute and print the grid
-tsvsheet check  sheet.tsvt          # validate formulas and references
-tsvsheet explain D5 < sheet.tsvt    # trace how a cell was produced
-tsvsheet serve  sheet.tsvt          # local browser editor (reads/writes the file)
-tsvsheet tui    sheet.tsvt          # terminal editor
+tsv render sheet.tsvt          # compute and print the grid
+tsv check  sheet.tsvt          # validate formulas and references
+tsv explain D5 < sheet.tsvt    # trace how a cell was produced
+tsv serve  sheet.tsvt          # local browser editor (reads/writes the file)
+tsv tui    sheet.tsvt          # terminal editor
 ```
 
 A `.tsvt` can carry a `#!` shebang and `#` comments, so a sheet is directly executable — `render` is the default command.
 
 ## Examples
 
-Everything below runs today, with the shipped engine and nothing else — each example was computed with `tsvsheet render` exactly as shown.
+Everything below runs today, with the shipped engine and nothing else — each example was computed with `tsv render` exactly as shown.
 
 ### Bars in the grid
 
@@ -95,7 +95,7 @@ Chart	=sheet("bar-chart.tsvt", A2, B2, A3, B3, …)
 ```
 
 ```text
-tsvsheet render report.tsvt | awk -F'\t' '$1=="Chart"{print $2}' > chart.svg
+tsv render report.tsvt | awk -F'\t' '$1=="Chart"{print $2}' > chart.svg
 ```
 
 The chart is a sheet: parameterized, versioned, diffable, forkable. A chart library is a directory of `.tsvt` files.
@@ -112,7 +112,7 @@ web	api	=concat("  ", A4, " -> ", B4, ";")
 ```
 
 ```text
-{ echo 'digraph deps {'; tsvsheet render edges.tsvt | cut -f3 | tail -n +2; echo '}'; } | dot -Tsvg -o deps.svg
+{ echo 'digraph deps {'; tsv render edges.tsvt | cut -f3 | tail -n +2; echo '}'; } | dot -Tsvg -o deps.svg
 ```
 
 (String literals have no escape sequences — for a literal `"` inside emitted text, use `char(34)`.)
@@ -122,7 +122,7 @@ web	api	=concat("  ", A4, " -> ", B4, ";")
 The computed grid is plain TSV — the native input of the standard plotting toolchain. Feed it to [gnuplot](http://gnuplot.info/) from a pipeline, or to [d3](https://d3js.org/) directly — `d3.tsv()` parses `render` output as-is:
 
 ```text
-tsvsheet render sales.tsvt > sales.tsv         # then: plot 'sales.tsv' with linespoints
+tsv render sales.tsvt > sales.tsv         # then: plot 'sales.tsv' with linespoints
 const rows = await d3.tsv("sales.tsv", d3.autoType);
 ```
 
