@@ -6,7 +6,7 @@ title: Home
 
 ## Playground
 
-[**Open the playground →**](playground/) — the real engine, compiled to WebAssembly, running entirely in your browser. No server, no upload: edit any cell (a value or an `=formula`), watch it recompute live, toggle the `.tsvt` source pane, and copy the result to your clipboard. wrap `TODAY()`, `NOW()`, `ISNOW()` (or `RAND()`, `TICK()`) in `volatile()` and they tick against your own clock.
+[**Open the playground →**](playground/) — the real engine, compiled to WebAssembly, running entirely in your browser. No server, no upload: edit any cell (a value or an `=formula`), watch it recompute live, toggle the `.tsvt` source pane, and copy the result to your clipboard. Wrap `TODAY()`, `NOW()`, `ISNOW()` (or `RAND()`, `TICK()`) in `volatile()` and they tick against your own clock.
 
 ## Model
 
