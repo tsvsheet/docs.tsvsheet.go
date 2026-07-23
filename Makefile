@@ -19,3 +19,12 @@ build: ## Build the docs site into _site
 .PHONY: clean
 clean: ## Remove the built site
 	rm -rf $(here)_site $(here)resources
+
+# The playground engine: the Go engine compiled to WebAssembly, pinned by
+# version and re-downloaded from the go-tsvsheet release — never a hand-built
+# local copy. Bump WASM_VERSION to adopt a new engine.
+WASM_VERSION := v0.9.2
+.PHONY: wasm
+wasm: ## Re-download the pinned engine wasm + runtime into static/playground
+	gh release download $(WASM_VERSION) --repo tsvsheet/go-tsvsheet --pattern 'tsvsheet.wasm' --output $(here)static/playground/main.wasm --clobber
+	gh release download $(WASM_VERSION) --repo tsvsheet/go-tsvsheet --pattern 'wasm_exec.js' --output $(here)static/playground/wasm_exec.js --clobber
